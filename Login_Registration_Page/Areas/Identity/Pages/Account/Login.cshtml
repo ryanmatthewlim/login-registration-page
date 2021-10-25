@@ -1,0 +1,52 @@
+﻿@page
+@model LoginModel
+
+<script>
+    function validateForm() {
+        var x = document.forms["loginForm"].value;
+        if (x == "" || x == null) {
+            alert("Invalid or incomplete information.");
+            return false;
+        }
+    }
+</script>
+
+<body style="margin-top: 100px; background-color: darkmagenta;">
+    <h1 align="center">Login</h1>
+    <div align="center">
+        <div class="col-md-4">
+            <section>
+                <img src="~/lib/pinkscribble.png" class="pinkscribble" style="left:430px; width:650px; height:auto"/>
+                <form id="account" method="post" name="loginForm" onsubmit="return validateForm()">
+                    <div class="form-group" style="padding-bottom:20px;">
+                        <input asp-for="Input.Email" placeholder="Username" class="form-control" />
+                    </div>
+                    <div class="form-group" style="padding-bottom:20px;">
+                        <input asp-for="Input.Password" placeholder="Password" class="form-control" />
+                    </div>
+                    <div class="form-group" style="padding-bottom:20px;">
+                        <div class="checkbox" align="left">
+                            <label asp-for="Input.RememberMe">
+                                <input asp-for="Input.RememberMe" />
+                                @Html.DisplayNameFor(m => m.Input.RememberMe)
+                            </label>
+                            <p style="float:right">
+                                <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group" style="padding-bottom:15px">
+                        <button type="submit" class="btn btn-primary" style="padding-left:100px; padding-right:100px">Log in</button>
+                    </div>
+                    <div class="form-group">
+                        <a asp-controller="Home" asp-action="Index" button type="submit" class="btn btn-primary" style="padding-left:102.5px; padding-right:102.5px">Back</a>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</body>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
